@@ -1,0 +1,74 @@
+////////////////////////////////////////////////////////////////////
+//   Memory configuration file for T4240 QDS
+////////////////////////////////////////////////////////////////////
+//
+//	
+//   Memory Map
+//
+//   0x00000000  0x7FFFFFFF  DDR        1GB
+//   0xC0000000  0xDFFFFFFF  DCSR       512M
+//   0xE8000000  0xEFFFFFFF  NOR        128M
+//   0xFE000000  0xFEFFFFFF  CCSR Space 16M
+//   0xFF800000  0xFF8FFFFF  NAND       1M
+//   0xFFDF0000  0xFFDF0FFF  QIXIS      4k
+//   0xFFFFF000  0xFFFFFFFF  Boot Page  4k  (valid only after reset)
+//
+//
+////////////////////////////////////////////////////////////////////
+
+
+reservedchar 0xBA
+
+
+// Translate virtual addresses to corresponding physical cacheable (p:) or cache-inhibited (i:) addresses
+
+translate v:0x0000000000000000 i:0x0000000000 0x80000000
+translate v:0x00000000C0000000 i:0x00C0000000 0x20000000
+translate v:0x00000000E8000000 i:0x00E8000000 0x08000000
+translate v:0x00000000FE000000 i:0x00FE000000 0x01000000
+translate v:0x00000000FF800000 i:0x00FF800000 0x00100000
+translate v:0x00000000FFDF0000 i:0x00FFDF0000 0x00001000
+translate v:0x00000000FFFFF000 i:0x00FFFFF000 0x00001000
+
+AutoEnableTranslations	true
+
+// Mark as reserved the gaps between the above valid memory ranges
+
+reserved v:0x0000000080000000 v:0x00000000BFFFFFFF
+reserved p:0x0080000000 p:0x00BFFFFFFF
+reserved i:0x0080000000 i:0x00BFFFFFFF
+
+reserved v:0x00000000E0000000 v:0x00000000E7FFFFFF
+reserved p:0x00E0000000 p:0x00E7FFFFFF
+reserved i:0x00E0000000 i:0x00E7FFFFFF
+
+reserved v:0x00000000F0000000 v:0x00000000FDFFFFFF
+reserved p:0x00F0000000 p:0x00FDFFFFFF
+reserved i:0x00F0000000 i:0x00FDFFFFFF
+
+reserved v:0x00000000FF000000 v:0x00000000FF7FFFFF
+reserved p:0x00FF000000 p:0x00FF7FFFFF
+reserved i:0x00FF000000 i:0x00FF7FFFFF
+
+reserved v:0x00000000FF900000 v:0x00000000FFDEFFFF
+reserved p:0x00FF900000 p:0x00FFDEFFFF
+reserved i:0x00FF900000 i:0x00FFDEFFFF
+
+reserved v:0x00000000FFDF1000 v:0x00000000FFFFEFFF
+reserved p:0x00FFDF1000 p:0x00FFFFEFFF
+reserved i:0x00FFDF1000 i:0x00FFFFEFFF
+
+// If the board is configured for a boot location that is not configured out of reset
+// trying to access the memory from the reset address corrupts the session
+// In this case, the lines below set the 4k page as reserved.
+// If you need to debug a bootloader from the reset address, please comment the lines below
+reserved v:0x00000000FFFFF000 v:0x00000000FFFFFFFF
+reserved p:0x00FFFFF000 p:0x00FFFFFFFF
+reserved i:0x00FFFFF000 i:0x00FFFFFFFF
+
+
+reserved v:0x0000000100000000 v:0xFFFFFFFFFFFFFFFF
+reserved p:0x0100000000 p:0x0FFDFFFFFF
+reserved p:0x0FFF000000 p:0xFFFFFFFFFF
+reserved i:0x0100000000 i:0x0FFDFFFFFF
+reserved i:0x0FFF000000 i:0xFFFFFFFFFF

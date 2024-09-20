@@ -1,0 +1,10 @@
+################################################################################
+# 生成文件和参数文件使用这些宏。
+# 如果在路径中包含空格与不能使用引号（"），
+# 一个使用反斜杠（\）来转义空格的宏的_ESCAPE版本被加上。
+################################################################################
+
+export PAGccAeabiE6500DirEnv=$(CWInstallLocationEnv)/Cross_Tools/gcc-4.9.2-Ee6500-aeabi/bin
+export GNU_Make_Install_DirEnv=$(CWInstallLocationEnv)/gnu/bin
+export ProjDirPath=C:/Users/bill/workspace/T4240QDS
+export CWInstallLocationEnv=C:/Freescale/CW_PA_v10.5.1

@@ -1,0 +1,23 @@
+"./Sources/smp_target.o"
+"./Sources/pa_exception.o"
+"./Sources/main.o"
+"./Sources/interrupt.o"
+"./Sources/__start_e6500_32bit_crt0.o"
+-nostartfiles
+-static
+-L"C:/Users/bill/workspace/T4240QDS/Lib"
+-e __start
+-fno-use-linker-plugin
+-Xlinker
+--start-group
+-Xlinker
+-lc
+-Xlinker
+-lsyscall
+-Xlinker
+"C:/Users/bill/workspace/T4240QDS/Lib/UART1_T4240QDS.aeabi.UC.32bit.a"
+-Xlinker
+--end-group
+-m32
+-T
+"C:/Users/bill/workspace/T4240QDS/LCF/T4240QDS_gcc-aeabi_SMP.lcf"

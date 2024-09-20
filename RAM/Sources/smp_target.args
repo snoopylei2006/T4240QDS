@@ -1,0 +1,12 @@
+-O0
+-g
+-DSMPTARGET
+-Wall
+-c
+-mbig-endian
+-fno-builtin
+-fomit-frame-pointer
+-Wno-unknown-pragmas
+-fdebug-unwind-tables
+-m32
+-mcpu=e6500

@@ -1,0 +1,334 @@
+/* Default linker script, for normal executables */
+OUTPUT_FORMAT("elf32-powerpc", "elf32-powerpc",
+	      "elf32-powerpc")
+OUTPUT_ARCH(powerpc:common)
+ENTRY(__start)
+MEMORY {
+	ram    : org = 0x00002000, l = 0x7FFFFFFF
+	rom   : org = 0xEFF10000 , l = 0x000EEFFF
+}
+
+SECTIONS
+{
+  _heap_addr  = 0x3cfff0;
+  _heap_end   = 0x3d7ff0;
+
+	_stack_addr0 = 0x018ff000;
+	_stack_end0  = 0x00900000;
+	_stack_addr1 = 0x028ff000;
+	_stack_end1  = 0x01900000;
+	_stack_addr2 = 0x038ff000;
+	_stack_end2  = 0x02900000;
+	_stack_addr3 = 0x048ff000;
+	_stack_end3  = 0x03900000;
+	_stack_addr4 = 0x058ff000;
+	_stack_end4  = 0x04900000;
+	_stack_addr5 = 0x068ff000;
+	_stack_end5  = 0x05900000;
+	_stack_addr6 = 0x078ff000;
+	_stack_end6  = 0x06900000;
+	_stack_addr7 = 0x088ff000;
+	_stack_end7  = 0x07900000;
+	_stack_addr8 = 0x098ff000;
+	_stack_end8  = 0x08900000;
+	_stack_addr9 = 0x0a8ff000;
+	_stack_end9  = 0x09900000;
+	_stack_addr10 = 0x0b8ff000;
+	_stack_end10  = 0x0a900000;
+	_stack_addr11 = 0x0c8ff000;
+	_stack_end11  = 0x0b900000;
+	_stack_addr12 = 0x0d8ff000;
+	_stack_end12  = 0x0c900000;
+	_stack_addr13 = 0x0e8ff000;
+	_stack_end13  = 0x0d900000;
+	_stack_addr14 = 0x0f8ff000;
+	_stack_end14  = 0x0e900000;
+	_stack_addr15 = 0x108ff000;
+	_stack_end15  = 0x0f900000;
+	_stack_addr16 = 0x118ff000;
+	_stack_end16  = 0x10900000;
+	_stack_addr17 = 0x128ff000;
+	_stack_end17  = 0x11900000;
+	_stack_addr18 = 0x138ff000;
+	_stack_end18  = 0x12900000;
+	_stack_addr19 = 0x148ff000;
+	_stack_end19  = 0x13900000;
+	_stack_addr20 = 0x158ff000;
+	_stack_end20  = 0x14900000;
+	_stack_addr21 = 0x168ff000;
+	_stack_end21  = 0x15900000;
+	_stack_addr22 = 0x178ff000;
+	_stack_end22  = 0x16900000;
+	_stack_addr23 = 0x188ff000;
+	_stack_end23  = 0x17900000;
+  
+  .intvec 0xEFF00000 :
+  {
+    *(.intvec)
+  } = 0xffff
+  
+  .spin 0xEFFFD000 :
+  {  
+  	*(.spin)
+  }
+
+  .init 0xEFFFF000 :
+  {
+    *(.init)
+  } = 0xFFC
+  
+  .reset 0xEFFFFFFC :
+  {
+    *(.reset)
+  } = 0x4
+  
+  .newstart : 
+  {
+    *(.newstart)
+  }
+  /* Read-only sections, merged into text segment: */
+  
+  .interp         : { *(.interp) }
+  .hash           : { *(.hash) }
+  .dynsym         : { *(.dynsym) }
+  .dynstr         : { *(.dynstr) }
+  .gnu.version    : { *(.gnu.version) }
+  .gnu.version_d  : { *(.gnu.version_d) }
+  .gnu.version_r  : { *(.gnu.version_r) }
+  .rel.init       : { *(.rel.init) }
+  .rela.init      : { *(.rela.init) }
+  .rel.text       : { *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*) }
+  .rela.text      : { *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*) }
+  .rel.fini       : { *(.rel.fini) }
+  .rela.fini      : { *(.rela.fini) }
+  .rel.rodata     : { *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*) }
+  .rela.rodata    : { *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*) }
+  .rel.data       : { *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*) }
+  .rela.data      : { *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*) }
+  .rel.tdata	  : { *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*) }
+  .rela.tdata	  : { *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*) }
+  .rel.tbss	  : { *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*) }
+  .rela.tbss	  : { *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*) }
+  .rel.ctors      : { *(.rel.ctors) }
+  .rela.ctors     : { *(.rela.ctors) }
+  .rel.dtors      : { *(.rel.dtors) }
+  .rela.dtors     : { *(.rela.dtors) }
+  .rel.got        : { *(.rel.got) }
+  .rela.got       : { *(.rela.got) }
+  .rela.got1      : { *(.rela.got1) }
+  .rela.got2      : { *(.rela.got2) }
+  .rel.sdata      : { *(.rel.sdata .rel.sdata.* .rel.gnu.linkonce.s.*) }
+  .rela.sdata     : { *(.rela.sdata .rela.sdata.* .rela.gnu.linkonce.s.*) }
+  .rel.sbss       : { *(.rel.sbss .rel.sbss.* .rel.gnu.linkonce.sb.*) }
+  .rela.sbss      : { *(.rela.sbss .rela.sbss.* .rela.gnu.linkonce.sb.*) }
+  .rel.sdata2     : { *(.rel.sdata2 .rel.sdata2.* .rel.gnu.linkonce.s2.*) }
+  .rela.sdata2    : { *(.rela.sdata2 .rela.sdata2.* .rela.gnu.linkonce.s2.*) }
+  .rel.sbss2      : { *(.rel.sbss2 .rel.sbss2.* .rel.gnu.linkonce.sb2.*) }
+  .rela.sbss2     : { *(.rela.sbss2 .rela.sbss2.* .rela.gnu.linkonce.sb2.*) }
+  .rel.bss        : { *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*) }
+  .rela.bss       : { *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*) }
+  .rel.plt        : { *(.rel.plt) }
+  .rela.plt       : { *(.rela.plt) }
+
+  .init  :
+  {
+    KEEP (*ecrti.o(.init))
+    KEEP (*crtbegin.o(.init))
+    KEEP (*crtend.o(.init))    
+    KEEP (*(EXCLUDE_FILE (*ecrtn.o) .init))
+    KEEP (*ecrtn.o(.init))
+    *(.init)
+  } =0
+
+  .rodata         : { *(.rodata .rodata.* .gnu.linkonce.r.*) } > rom
+  .rodata1        : { *(.rodata1) } > rom
+  .got1           : { __GOT1_START__ = . ; *(.got1); __GOT1_END__ = . ; } > rom
+  .got2           : { __GOT2_START__ = . ; *(.got2); __GOT2_END__ = . ; } > rom
+                    
+  .eh_frame ALIGN(0x4):
+  {
+	PROVIDE (__eh_frame_start = .);
+	KEEP (*(.eh_frame)) 
+	LONG(0);
+  } > rom 
+  .gcc_except_table : { *(.gcc_except_table) *(.gcc_except_table.*) } > rom
+  .text           :
+  {
+    *(.text .stub .text.* .gnu.linkonce.t.*) ;
+    *(.gnu.warning)
+  } > rom
+
+  .ctors          :
+  {
+    __CTOR_LIST__ = .;
+    /* gcc uses crtbegin.o to find the start of
+       the constructors, so we make sure it is
+       first.  Because this is a wildcard, it
+       doesn't matter if the user does not
+       actually link against crtbegin.o; the
+       linker won't look for a file to match a
+       wildcard.  The wildcard also means that it
+       doesn't matter which directory crtbegin.o
+       is in.  */
+    KEEP (*crtbegin.o(.ctors))
+    /* We don't want to include the .ctor section from
+       from the crtend.o file until after the sorted ctors.
+       The .ctor section from the crtend file contains the
+       end of ctors marker and it must be last */
+    KEEP (*(EXCLUDE_FILE (*crtend.o ) .ctors))
+    KEEP (*(SORT(.ctors.*)))
+    KEEP (*(.ctors))
+    __CTOR_END__ = .;
+  } > rom
+  .dtors          :
+  {
+    __DTOR_LIST__ = .;
+    KEEP (*crtbegin.o(.dtors))
+    KEEP (*(EXCLUDE_FILE (*crtend.o ) .dtors))
+    KEEP (*(SORT(.dtors.*)))
+    KEEP (*(.dtors))
+    __DTOR_END__ = .;
+  } > rom
+  
+  .eh_frame_hdr : { *(.eh_frame_hdr) } > rom  
+  
+  .fini           :
+  {
+    KEEP (*ecrti.o(.fini))
+    KEEP (*crtbegin.o(.fini))
+    KEEP (*crtend.o(.fini))    
+    KEEP (*(EXCLUDE_FILE (*ecrtn.o) .fini))
+    KEEP (*ecrtn.o(.fini))
+  } > rom =0
+    
+
+  
+  PROVIDE (__etext = .);
+  PROVIDE (_etext = .);
+  PROVIDE (etext = .); 
+  .sdata2         : { __SDATA2_START__ = . ; _SDA2_BASE_ = . + 32768; *(.sdata2 .sdata2.* .gnu.linkonce.s2.*); __SDATA2_END__ = . ; } > ram
+  .sbss2          : { __SBSS2_START__ = . ; *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*); __SBSS2_END__ = . ; } > ram
+    
+  /* Adjust the address for the data segment.  We want to adjust up to
+     the same address within the page on the next page up.  */
+  . = ALIGN(0x10000) + (. & (0x10000 - 1));
+  /* Ensure the __preinit_array_start label is properly aligned.  We
+     could instead move the label definition inside the section, but
+     the linker would then create the section even if it turns out to
+     be empty, which isn't pretty.  */
+  . = ALIGN(32 / 8);
+  PROVIDE (__preinit_array_start = .);
+  .preinit_array     : { *(.preinit_array) }
+  PROVIDE (__preinit_array_end = .);
+  PROVIDE (__init_array_start = .);
+  .init_array     : { *(.init_array) }
+  PROVIDE (__init_array_end = .);
+  PROVIDE (__fini_array_start = .);
+  .fini_array     : { *(.fini_array) }
+  PROVIDE (__fini_array_end = .);
+    
+ .sdata          :
+    AT (_etext)
+  {
+    __SDATA_START__ = .;
+    _sdata = . ;
+    _SDA_BASE_ = . + 32768 ; *(.sdata .sdata.* .gnu.linkonce.s.*) 
+    _fsdata = .; 
+    __SDATA_END__ = .;
+  } > ram
+  
+  _esdata = _etext + SIZEOF (.sdata);
+  
+  .data           :
+   AT ((_etext)+SIZEOF(.sdata))
+  {
+     _data = . ;
+    *(.data .data.* .gnu.linkonce.d.*)
+     SORT(CONSTRUCTORS)
+  } > ram
+  
+  .percpu           :
+   AT ((_etext)+SIZEOF(.sdata) + SIZEOF(.data))
+  {
+    *(.percpu .stub .percpu.* .gnu.linkonce.t.*);
+     _edata = .;   
+    *(.gnu.warning)
+  } > ram
+  .data1          : { *(.data1) }
+  .tdata	  : { *(.tdata .tdata.* .gnu.linkonce.td.*) }
+  .tbss		  : { *(.tbss .tbss.* .gnu.linkonce.tb.*) *(.tcommon) }
+ 
+  .fixup          : { __FIXUP_START__ = . ; *(.fixup); __FIXUP_END__ = . ; } > ram
+  .dynamic        : { *(.dynamic) }
+  .jcr            : { KEEP (*(.jcr)) } > ram
+  .got            : { *(.got.plt) *(.got) }
+  /* We want the small data sections together, so single-instruction offsets
+     can access them all, and initialized data all before uninitialized, so
+     we can shorten the on-disk segment size.  */
+  PROVIDE (edata = .);
+  __bss_start = .;
+  __fsl_bss_start = .;
+  .sbss           :
+  {
+    __SBSS_START__ = .;
+    PROVIDE (__sbss_start = .);
+    PROVIDE (___sbss_start = .);
+    *(.dynsbss)
+    *(.sbss .sbss.* .gnu.linkonce.sb.*)
+    *(.scommon)
+    PROVIDE (__sbss_end = .);
+    PROVIDE (___sbss_end = .);
+    __SBSS_END__ = .;
+  } > ram
+  .plt            : { *(.plt) }
+  .bss            :
+  {
+   *(.dynbss)
+   *(.bss .bss.* .gnu.linkonce.b.*)
+   *(COMMON)
+   /* Align here to ensure that the .bss section occupies space up to
+      _end.  Align after .bss to ensure correct alignment even if the
+      .bss section disappears because there are no input sections.  */
+   . = ALIGN(32 / 8);
+   __fsl_bss_end = .;   
+  } > ram
+
+  . = ALIGN(32 / 8);
+  _end = .;
+  __end = .;
+  
+  PROVIDE (end = .);
+    /* Stabs debugging sections.  */
+  .stab          0 : { *(.stab) }
+  .stabstr       0 : { *(.stabstr) }
+  .stab.excl     0 : { *(.stab.excl) }
+  .stab.exclstr  0 : { *(.stab.exclstr) }
+  .stab.index    0 : { *(.stab.index) }
+  .stab.indexstr 0 : { *(.stab.indexstr) }
+  .comment       0 : { *(.comment) }
+  /* DWARF debug sections.
+     Symbols in the DWARF debugging sections are relative to the beginning
+     of the section so we begin them at 0.  */
+  /* DWARF 1 */
+  .debug          0 : { *(.debug) }
+  .line           0 : { *(.line) }
+  /* GNU DWARF 1 extensions */
+  .debug_srcinfo  0 : { *(.debug_srcinfo) }
+  .debug_sfnames  0 : { *(.debug_sfnames) }
+  /* DWARF 1.1 and DWARF 2 */
+  .debug_aranges  0 : { *(.debug_aranges) }
+  .debug_pubnames 0 : { *(.debug_pubnames) }
+  /* DWARF 2 */
+  .debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
+  .debug_abbrev   0 : { *(.debug_abbrev) }
+  .debug_line     0 : { *(.debug_line) }
+  .debug_frame    0 : { *(.debug_frame) }
+  .debug_str      0 : { *(.debug_str) }
+  .debug_loc      0 : { *(.debug_loc) }
+  .debug_macinfo  0 : { *(.debug_macinfo) }
+  /* SGI/MIPS DWARF 2 extensions */
+  .debug_weaknames 0 : { *(.debug_weaknames) }
+  .debug_funcnames 0 : { *(.debug_funcnames) }
+  .debug_typenames 0 : { *(.debug_typenames) }
+  .debug_varnames  0 : { *(.debug_varnames) }
+}
